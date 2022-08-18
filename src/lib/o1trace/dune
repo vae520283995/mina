@@ -1,7 +1,0 @@
-(library
- (name o1trace)
- (public_name o1trace)
- (libraries async_kernel)
- (synopsis "Basic event tracing")
- (instrumentation (backend bisect_ppx))
- (preprocess (pps ppx_version)))

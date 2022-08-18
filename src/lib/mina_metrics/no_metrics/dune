@@ -1,7 +1,0 @@
-(library
- (public_name mina_metrics.none)
- (name mina_metrics_none)
- (libraries async_kernel logger uri)
- (instrumentation (backend bisect_ppx))
- (preprocess (pps ppx_version))
- (implements mina_metrics))

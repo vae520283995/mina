@@ -1,6 +1,0 @@
-(library
- (name visualization)
- (public_name visualization)
- (libraries core_kernel async_kernel ocamlgraph yojson)
- (instrumentation (backend bisect_ppx))
- (preprocess (pps ppx_version ppx_jane ppx_deriving_yojson)))

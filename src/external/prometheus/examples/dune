@@ -1,3 +1,0 @@
-(executable
-  (name         example)
-  (libraries    prometheus prometheus-app.unix cmdliner cohttp-lwt cohttp-lwt-unix))
