@@ -1,0 +1,117 @@
+load(
+    "@obazl_rules_ocaml//ocaml:rules.bzl",
+    "ppx_archive",
+    "ppx_library",
+    "ppx_module",
+    "ppx_ns_archive",
+)
+# load("@obazl_rules_ocaml//ocaml:macros.bzl", "ppx_ns_env")
+
+# ppx_ns_env(aliases = glob(["*.ml"]))
+
+#########################
+PPX_VERSION_OPAM_DEPS = [
+    # do not sort (buildifier)
+    "compiler-libs.common",
+    "ppxlib",
+    "ppx_bin_prot",
+    "core_kernel",
+]
+
+PPX_VERSION_PPX = "//bzl/ppx/exe:ppxlib.metaquot"
+
+##############
+ppx_ns_archive(
+    name = "ppx_version",
+    opts = ["-linkall"],
+    submodules = [
+        ":Bin_io_unversioned",
+        ":Dummy_derivers",
+        ":Lint_version_syntax",
+        ":Versioned_type",
+        ":Versioned_module",
+        ":Versioned_util"
+    ],
+    visibility = ["//visibility:public"],
+)
+
+###########
+ppx_module(
+    name = "Bin_io_unversioned",
+    struct = "bin_io_unversioned.ml",
+    deps_adjunct = [
+        # "@ppx_version//src/runtime:ppx_version_runtime",
+    ],
+    deps_opam = PPX_VERSION_OPAM_DEPS,
+    ppx = PPX_VERSION_PPX,
+    deps = [
+        # do not sort (buildifier)
+        "Versioned_util",
+    ],
+)
+
+###########
+ppx_module(
+    name = "Dummy_derivers",
+    deps_adjunct = [
+        # do not sort (buildifier)
+        # "@ppx_version//src/runtime:ppx_version_runtime",
+    ],
+    deps_opam = PPX_VERSION_OPAM_DEPS,
+    ppx = PPX_VERSION_PPX,
+    struct = "dummy_derivers.ml",
+)
+
+###########
+ppx_module(
+    name = "Lint_version_syntax",
+    deps_adjunct = [
+        # do not sort (buildifier)
+        # "@ppx_version//src/runtime:ppx_version_runtime",
+    ],
+    deps_opam = PPX_VERSION_OPAM_DEPS,
+    ppx = PPX_VERSION_PPX,
+    struct = "lint_version_syntax.ml",
+    deps = [
+        "Versioned_util",
+    ],
+)
+
+###########
+ppx_module(
+    name = "Versioned_module",
+    deps_adjunct = [
+        # do not sort (buildifier)
+        # "@ppx_version//src/runtime:ppx_version_runtime",
+    ],
+    deps_opam = PPX_VERSION_OPAM_DEPS,
+    ppx = PPX_VERSION_PPX,
+    struct = "versioned_module.ml",
+    deps = [
+        "Versioned_util",
+    ],
+)
+
+###########
+ppx_module(
+    name = "Versioned_type",
+    deps_adjunct = [
+        # do not sort (buildifier)
+        # "@ppx_version//src/runtime:ppx_version_runtime",
+    ],
+    deps_opam = PPX_VERSION_OPAM_DEPS,
+    ppx = PPX_VERSION_PPX,
+    struct = "versioned_type.ml",
+    deps = [
+        "Versioned_util",
+    ],
+)
+
+###########
+ppx_module(
+    name = "Versioned_util",
+    # deps_adjunct = ["@ppx_version//src/runtime:ppx_version_runtime"],
+    deps_opam = PPX_VERSION_OPAM_DEPS,
+    ppx = PPX_VERSION_PPX,
+    struct = "versioned_util.ml",
+)

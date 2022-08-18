@@ -1,0 +1,2 @@
+
+exports_files(["graphql_schema.json"])

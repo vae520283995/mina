@@ -1,0 +1,455 @@
+## OBAZL GENERATED FILE ## To retain edits (prevent overwrite), delete this line.
+
+load(
+    "@obazl_rules_ocaml//ocaml:rules.bzl",
+    "ocaml_archive",
+    "ocaml_module",
+    "ppx_executable",
+)
+
+exports_files(["graphql_schema.json"])
+
+GRAPHQL_SCHEMA_TARGET = ":graphql_schema.json"
+GRAPHQL_SCHEMA_FILE = "tests_native/graphql_schema.json"
+
+################################################################
+## STANZA 1: LIBRARY GRAPHQL_PPX_TEST
+################################################################
+GRAPHQL_PPX_TEST_ARCHIVE_OPTS = []
+
+GRAPHQL_PPX_TEST_MODULE_OPTS = []
+
+GRAPHQL_PPX_TEST_PPX_EXECUTABLE_OPTS = []
+
+GRAPHQL_PPX_TEST_DEPS = [
+    # do not sort (buildifier)
+    "@opam//pkg:alcotest",
+    "@opam//pkg:yojson",
+    "//src/native:graphql_ppx"
+]
+
+#############
+ocaml_module(
+    name = "_Arg_named_query",
+    src = "arg_named_query.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Test_shared",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Comment",
+    src = "comment.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS,
+)
+
+#############
+ocaml_module(
+    name = "_Custom_decoder",
+    src = "custom_decoder.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    ppx_print = "@ppx//print:binary",
+    deps = GRAPHQL_PPX_TEST_DEPS,
+)
+
+#############
+ocaml_module(
+    name = "_Custom_scalars",
+    src = "custom_scalars.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS + [
+        "-w",
+        # Error (warning 3): deprecated: Yojson.Basic.json
+        # json types are being renamed and will be removed in the next Yojson major version. Use type t instead
+        "-3"
+    ],
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    # ppx_print = "@ppx//print:binary",
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Test_shared",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Enum_input",
+    src = "enum_input.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Test_shared",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Fragment_definition",
+    src = "fragment_definition.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Test_shared",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Interface",
+    src = "interface.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS,
+)
+
+#############
+ocaml_module(
+    name = "_List_args",
+    src = "list_args.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Test_shared",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_List_inputs",
+    src = "list_inputs.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    ppx_print = "@ppx//print:binary",
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Test_shared",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Lists",
+    src = "lists.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Test_shared",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Main",
+    src = "main.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Arg_named_query",
+        ":_Custom_decoder",
+        ":_Custom_scalars",
+        ":_Enum_input",
+        ":_Fragment_definition",
+        ":_Interface",
+        ":_List_args",
+        ":_List_inputs",
+        ":_Lists",
+        ":_Mutation",
+        ":_Nested",
+        ":_Nonrecursive_input",
+        ":_Record",
+        ":_Recursive_input",
+        ":_Scalars",
+        ":_Scalars_args",
+        ":_Scalars_input",
+        ":_Skip_directives",
+        ":_Typename",
+        ":_Union",
+        ":_Union_partial",
+        ":_Variant",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Mutation",
+    src = "mutation.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS,
+)
+
+#############
+ocaml_module(
+    name = "_Nested",
+    src = "nested.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Test_shared",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Nonrecursive_input",
+    src = "nonrecursive_input.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Test_shared",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Record",
+    src = "record.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS,
+)
+
+#############
+ocaml_module(
+    name = "_Recursive_input",
+    src = "recursive_input.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Test_shared",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Scalars",
+    src = "scalars.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Test_shared",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Scalars_args",
+    src = "scalars_args.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Test_shared",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Scalars_input",
+    src = "scalars_input.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Test_shared",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Skip_directives",
+    src = "skip_directives.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Test_shared",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Test_shared",
+    src = "test_shared.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS + [
+        "-w",
+        # Error (warning 3): deprecated: Yojson.Basic.json
+        # json types are being renamed and will be removed in the next Yojson major version. Use type t instead
+        "-3"
+    ],
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS,
+)
+
+#############
+ocaml_module(
+    name = "_Typename",
+    src = "typename.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema", GRAPHQL_SCHEMA_FILE
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    ppx_print = "@ppx//print:binary",
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Test_shared",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Union",
+    src = "union.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    ppx_print = "@ppx//print:binary",
+    deps = GRAPHQL_PPX_TEST_DEPS,
+)
+
+#############
+ocaml_module(
+    name = "_Union_partial",
+    src = "union_partial.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS,
+)
+
+#############
+ocaml_module(
+    name = "_Variant",
+    src = "variant.ml",
+    opts = GRAPHQL_PPX_TEST_MODULE_OPTS,
+    ppx = ":ppx1.exe",
+    ppx_args = [
+        "-schema={}".format(GRAPHQL_SCHEMA_FILE)
+    ],
+    ppx_data = [GRAPHQL_SCHEMA_TARGET],
+    deps = GRAPHQL_PPX_TEST_DEPS + [
+        # do not sort (buildifier)
+        ":_Test_shared",
+    ],
+)
+
+###############
+ppx_executable(
+    name = "ppx1.exe",
+    main = "//bzl/ppx/exe:Driver",
+    opts = GRAPHQL_PPX_TEST_PPX_EXECUTABLE_OPTS,
+    visibility = [
+        "//tests_native:__pkg__",
+    ],
+    deps = [
+        "//src/native:graphql_ppx",
+        "@opam//pkg:ppxlib",
+    ],
+)
