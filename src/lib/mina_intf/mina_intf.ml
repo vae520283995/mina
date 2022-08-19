@@ -1,2 +1,0 @@
-include Core_intf
-include Transition_frontier_components_intf

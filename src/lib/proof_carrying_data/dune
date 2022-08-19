@@ -1,7 +1,0 @@
-(library
- (name proof_carrying_data)
- (instrumentation (backend bisect_ppx))
- (preprocess (pps ppx_version ppx_jane))
- (libraries core_kernel)
- (public_name proof_carrying_data)
-)
