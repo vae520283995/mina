@@ -1,0 +1,13 @@
+.bazel
+bazel-*
+user.bazelrc
+.cpcache
+*.log
+
+.merlin
+_build
+*.install
+*:*
+
+*~
+_opam

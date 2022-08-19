@@ -1,0 +1,23 @@
+load(
+    "@obazl_rules_ocaml//ocaml:rules.bzl",
+    "ocaml_module",
+    "ocaml_ns_archive",
+)
+
+#########
+ocaml_ns_archive(
+    name = "ppx_version_runtime",
+    submodules = {
+        ":_Serialization": "Serialization",
+    },
+    visibility = ["//visibility:public"]
+)
+
+#############
+ocaml_module(
+    name   = "_Serialization",
+    struct = "serialization.ml",
+    deps_opam = [
+        "core_kernel"
+    ]
+)

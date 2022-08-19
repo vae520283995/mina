@@ -1,0 +1,146 @@
+## OBAZL GENERATED FILE ## To retain edits (prevent overwrite), delete this line.
+
+load(
+    "@obazl_rules_ocaml//ocaml:rules.bzl",
+    "ocaml_executable",
+    "ocaml_module",
+)
+
+################################################################
+## STANZA 1: EXECUTABLE GRAPHQL_PPX
+################################################################
+GRAPHQL_PPX_EXECUTABLE_OPTS = []
+
+GRAPHQL_PPX_MODULE_OPTS = []
+
+GRAPHQL_PPX_DEPS = [
+    # do not sort (buildifier)
+    "@opam//pkg:ocaml-migrate-parsetree",
+    "@graphql_ppx//src/base:graphql_ppx_base",
+]
+
+GRAPHQL_PPX_PPX = "@//bzl/ppx/exe:ppx_tools_versioned.metaquot_402"
+
+GRAPHQL_PPX_PPX_ARGS = [
+    # do not sort (buildifier)
+]
+
+#################
+ocaml_executable(
+    name = "graphql_ppx.exe",
+    opts = GRAPHQL_PPX_EXECUTABLE_OPTS,
+    visibility = ["//visibility:public"],
+    deps = GRAPHQL_PPX_DEPS + [
+        # do not sort (buildifier)
+        ":_Graphql_ppx",
+        ":_Output_bucklescript_decoder",
+        ":_Output_bucklescript_encoder",
+        ":_Output_bucklescript_module",
+        ":_Output_bucklescript_unifier",
+        ":_Output_bucklescript_utils",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Graphql_ppx",
+    src = "graphql_ppx.ml",
+    opts = GRAPHQL_PPX_MODULE_OPTS + [
+        "-w",
+        # Error (warning 3): deprecated: module Ast_402
+        # Access modules via the Migrate_parsetree toplevel module. Use Migrate_parsetree.Ast_402 instead.
+        "-3"
+    ],
+    ppx = GRAPHQL_PPX_PPX,
+    ppx_args = GRAPHQL_PPX_PPX_ARGS,
+    deps = GRAPHQL_PPX_DEPS + [
+        # do not sort (buildifier)
+        ":_Output_bucklescript_module",
+        ":_Output_bucklescript_utils",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Output_bucklescript_decoder",
+    src = "output_bucklescript_decoder.ml",
+    opts = GRAPHQL_PPX_MODULE_OPTS + [
+        "-w",
+        # Error (warning 3): deprecated: module Ast_402
+        # Access modules via the Migrate_parsetree toplevel module. Use Migrate_parsetree.Ast_402 instead.
+        "-3"
+    ],
+    ppx = GRAPHQL_PPX_PPX,
+    ppx_args = GRAPHQL_PPX_PPX_ARGS,
+    deps = GRAPHQL_PPX_DEPS + [
+        # do not sort (buildifier)
+        ":_Output_bucklescript_utils",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Output_bucklescript_encoder",
+    src = "output_bucklescript_encoder.ml",
+    opts = GRAPHQL_PPX_MODULE_OPTS + [
+        "-w",
+        # Error (warning 3): deprecated: module Ast_402
+        # Access modules via the Migrate_parsetree toplevel module. Use Migrate_parsetree.Ast_402 instead.
+        "-3"
+    ],
+    ppx = GRAPHQL_PPX_PPX,
+    ppx_args = GRAPHQL_PPX_PPX_ARGS,
+    deps = GRAPHQL_PPX_DEPS + [
+        # do not sort (buildifier)
+        ":_Output_bucklescript_utils",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Output_bucklescript_module",
+    src = "output_bucklescript_module.ml",
+    opts = GRAPHQL_PPX_MODULE_OPTS + [
+        "-w",
+        # Error (warning 3): deprecated: module Ast_402
+        # Access modules via the Migrate_parsetree toplevel module. Use Migrate_parsetree.Ast_402 instead.
+        "-3"
+    ],
+    ppx = GRAPHQL_PPX_PPX,
+    ppx_args = GRAPHQL_PPX_PPX_ARGS,
+    deps = GRAPHQL_PPX_DEPS + [
+        # do not sort (buildifier)
+        ":_Output_bucklescript_decoder",
+        ":_Output_bucklescript_encoder",
+        ":_Output_bucklescript_unifier",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Output_bucklescript_unifier",
+    src = "output_bucklescript_unifier.ml",
+    opts = GRAPHQL_PPX_MODULE_OPTS + [
+        "-w",
+        # Error (warning 3): deprecated: module Ast_402
+        # Access modules via the Migrate_parsetree toplevel module. Use Migrate_parsetree.Ast_402 instead.
+        "-3"
+    ],
+    ppx = GRAPHQL_PPX_PPX,
+    ppx_args = GRAPHQL_PPX_PPX_ARGS,
+    deps = GRAPHQL_PPX_DEPS + [
+        # do not sort (buildifier)
+        ":_Output_bucklescript_encoder",
+        ":_Output_bucklescript_utils",
+    ],
+)
+
+#############
+ocaml_module(
+    name = "_Output_bucklescript_utils",
+    src = "output_bucklescript_utils.ml",
+    opts = GRAPHQL_PPX_MODULE_OPTS,
+    ppx = GRAPHQL_PPX_PPX,
+    ppx_args = GRAPHQL_PPX_PPX_ARGS,
+    deps = GRAPHQL_PPX_DEPS,
+)
